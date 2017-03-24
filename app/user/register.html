@@ -1,0 +1,36 @@
+<div class="container" style="margin-top: 50px;">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Register</h3>
+        </div>
+        <div class="panel-body">
+            <fieldset class="form-group">
+                <label for="firstname">FirstName</label>
+                <input type="text" class="form-control input-sm" ng-model="vm.user.firstName">
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="lastname">LastName</label>
+                <input type="text" class="form-control input-sm" ng-model="vm.user.lastName">
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="email">EmailAddress</label>
+                <input type="text" class="form-control input-sm" ng-model="vm.user.emailAddress">
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="usercheck">Are you a Landlord?</label>
+                <!-- <input places-auto-complete class="form-control input-sm " ng-model=" " /> -->
+                <input class="form-check-input" type="checkbox" value="" ng-model="vm.user.isLandlord"> Yes
+                <!-- <input class="form-check-input" type="checkbox" value=""> No -->
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control input-sm" ng-model="vm.user.userName">
+            </fieldset>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm pull-right" ng-click="vm.addUser(vm.user)">Register</button>
+    </div>
+
+
+
+
+</div>

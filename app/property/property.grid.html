@@ -1,0 +1,140 @@
+<div class="container main-nav">
+    <nav class="navbar navbar-light bg-faded pull-right">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="username" ng-model="">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="">Search</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="">Logout</button>
+        </form>
+    </nav>
+</div>
+<div class="container">
+    <form editable-form name="editableForm" onaftersave="">
+        <div>
+            <!-- editable propertyname (text with validation) -->
+            <span class="title">Property Name: </span>
+            <span editable-text="user.name" e-name="name" onbeforesave="checkName($data)" e-required>{{ user.name || 'empty' }}</span>
+        </div>
+
+        <div>
+            <!-- editable address1 (select-local) -->
+            <span class="title">Address 1: </span>
+            <span editable-text="user.status" e-name="status" e-ng-options="s.value as s.text for s in statuses">
+          {{  'Not set' }}
+        </span>
+        </div>
+
+        <div>
+            <!-- editable address2 (select-remote) -->
+            <span class="title">Address 2: </span>
+            <span editable-text="user.group" e-name="group" onshow="loadGroups()" e-ng-options="g.id as g.text for g in groups">
+          {{ showGroup() }}
+        </span>
+        </div>
+
+        <div>
+            <!-- editable city (select-remote) -->
+            <span class="title">City: </span>
+            <span editable-text="user.group" e-name="group" onshow="loadGroups()" e-ng-options="g.id as g.text for g in groups">
+          {{ showGroup() }}
+        </span>
+        </div>
+
+        <div>
+            <!-- editable state (select-remote) -->
+            <span class="title">State: </span>
+            <span editable-text="user.group" e-name="group" onshow="loadGroups()" e-ng-options="g.id as g.text for g in groups">
+          {{ showGroup() }}
+        </span>
+        </div>
+
+        <div>
+            <!-- editable zip (select-remote) -->
+            <span class="title">Zip: </span>
+            <span editable-text="user.group" e-name="group" onshow="loadGroups()" e-ng-options="g.id as g.text for g in groups">
+          {{ showGroup() }}
+        </span>
+        </div>
+
+        <div>
+            <!-- editable contact (select-remote) -->
+            <span class="title">Contact Phone: </span>
+            <span editable-text="user.group" e-name="group" onshow="loadGroups()" e-ng-options="g.id as g.text for g in groups">
+          {{ showGroup() }}
+        </span>
+        </div>
+
+        <div>
+            <!-- editable mo. rent (select-remote) -->
+            <span class="title">Monthly Rent: </span>
+            <span editable-text="user.group" e-name="group" onshow="loadGroups()" e-ng-options="g.id as g.text for g in groups">
+          {{ showGroup() }}
+        </span>
+        </div>
+
+        <div>
+            <!-- editable sq ft (select-remote) -->
+            <span class="title">Square Footage: </span>
+            <span editable-text="user.group" e-name="group" onshow="loadGroups()" e-ng-options="g.id as g.text for g in groups">
+          {{ showGroup() }}
+        </span>
+        </div>
+
+        <div>
+            <!-- editable bedrooms (select-remote) -->
+            <span class="title">Bedrooms: </span>
+            <span editable-select="user.group" e-name="group" onshow="loadGroups()" e-ng-options="g.id as g.text for g in groups">
+          {{ showGroup() }}
+        </span>
+        </div>
+
+        <div>
+            <!-- editable bathrooms (select-remote) -->
+            <span class="title">Bathrooms: </span>
+            <span editable-select="user.group" e-name="group" onshow="loadGroups()" e-ng-options="g.id as g.text for g in groups">
+          {{ showGroup() }}
+        </span>
+        </div>
+
+        <div>
+            <!-- editable pet friendly (select-remote) -->
+            <span class="title">Pet Friendly: </span>
+            <span editable-checkbox="user.group" e-name="group" onshow="loadGroups()" e-ng-options="g.id as g.text for g in groups">
+          {{ showGroup() }}
+        </span>
+        </div>
+
+        <div>
+            <!-- editable leaseterm (select-remote) -->
+            <span class="title">Lease Term: </span>
+            <span editable-text="user.group" e-name="group" onshow="loadGroups()" e-ng-options="g.id as g.text for g in groups">
+          {{ showGroup() }}
+        </span>
+        </div>
+
+        <div>
+            <!-- editable property image (select-remote) -->
+            <span class="title">Property Image: </span>
+            <span editable-text="user.group" e-name="group" onshow="loadGroups()" e-ng-options="g.id as g.text for g in groups">
+          {{ showGroup() }}
+        </span>
+        </div>
+
+        <div class="buttons">
+            <!-- button to show form -->
+            <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+          Edit
+        </button>
+            <!-- buttons to submit / cancel form -->
+            <span ng-show="editableForm.$visible">
+          <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+            Save
+          </button>
+          <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+            Cancel
+          </button>
+        </span>
+        </div>
+    </form>
+
+    <!-- <button type="button" class="btn btn-default" ng-click="addUser()">Add row</button> -->
+</div>

@@ -1,35 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 
 <head>
     <meta charset="UTF-8">
-    <title>Gulp Demo</title>
+    <title>Property Manager</title>
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/app/styles/style.css">
+    <!-- endinject -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
     <!-- endbower -->
 
-    <!-- inject:css -->
-    <!-- endinject -->
+
 </head>
 
 <body>
     <!-- bower:js -->
-    <div ui-view></div>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
     <!-- endbower -->
-    <h1>HEYA</h1>
+    <!-- <h1>HEYA</h1> -->
+    <div ui-view></div>
     <!-- inject:js -->
     <script src="/app/app.js"></script>
     <script src="/app/core/localstorage.factory.js"></script>
     <script src="/app/core/property.factory.js"></script>
     <script src="/app/core/user.factory.js"></script>
-    <script src="/app/search/search.controller.js"></script>
+    <script src="/app/interest/interest.controller.js"></script>
+    <script src="/app/interest/interest.factory.js"></script>
     <script src="/app/property/property.controller.js"></script>
+    <script src="/app/search/search.controller.js"></script>
     <script src="/app/user/user.controller.js"></script>
     <!-- endinject -->
 </body>

@@ -1,0 +1,74 @@
+<div class="container main-nav">
+    <nav class="navbar navbar-light bg-faded pull-right">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="username" ng-model="">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="">Login</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="">Register</button>
+        </form>
+    </nav>
+</div>
+<div class="container search-container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search Properties</h3>
+        </div>
+        <div class="panel-body">
+            <form class="formContainer">
+                <fieldset class="form-group">
+                    <label for="city ">City</label>
+                    <input type="text " class="form-control input-sm" ng-model=" ">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="zip ">ZipCode</label>
+                    <input type="text " class="form-control input-sm" ng-model=" ">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="bedroom ">Bedroom</label>
+                    <!-- <input type="text " class="form-control input-sm" ng-model=" "> -->
+                    <select class="form-control input-sm" ng-model="">
+                       <option>-</option>
+                       <option value=1>1</option>
+                       <option value=2>2</option>
+                       <option value=3>3</option>
+                       <option value=4>4</option>
+                       <option value=5>5</option>
+                       <option value=6>6</option>
+                     </select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="bathroom ">Bathroom</label>
+                    <!-- <input places-auto-complete class="form-control input-sm" ng-model=" " /> -->
+                    <select class="form-control input-sm" ng-model="">
+                       <option>-</option>
+                       <option value=1>1</option>
+                       <option value=2>2</option>
+                       <option value=3>3</option>
+                       <option value=4>4</option>
+                       <option value=5>5</option>
+                       <option value=6>6</option>
+                     </select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="rentmin ">Rent Minimum</label>
+                    <input places-auto-complete class="form-control input-sm" ng-model=" " />
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="rentmax ">Rent Maximum</label>
+                    <input places-auto-complete class="form-control input-sm" ng-model=" " />
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="sqft ">Square Footage</label>
+                    <input places-auto-complete class="form-control input-sm " ng-model=" " />
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="pet ">Pet Friendly?</label>
+                    <!-- <input places-auto-complete class="form-control input-sm " ng-model=" " /> -->
+                    <input class="form-check-input" type="checkbox" value=""> Yes
+                </fieldset>
+                <button type="submit " class="btn btn-primary btn-sm pull-right">Search</button>
+
+            </form>
+        </div>
+    </div>
+
+</div>
