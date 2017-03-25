@@ -11,7 +11,8 @@
     function UserFactory($http, $q, toastr, apiUrl) {
         var service = {
             grabUsers: grabUsers,
-            newUser: newUser
+            newUser: newUser,
+            getUser: getUser
         };
 
         return service;
@@ -20,7 +21,8 @@
             var defer = $q.defer();
             $http({
                     method: 'GET',
-                    url: apiUrl + 'users'
+                    url: apiUrl + 'users',
+
                 })
                 .then(
                     function(response) {
@@ -35,6 +37,56 @@
                 );
             return defer.promise;
         }
+
+        //     function getUser(username) {
+        //
+        //         var defer = $q.defer();
+        //
+        //         $http({
+        //                 method: 'GET',
+        //                 url: apiUrl + 'Properties/GetSearchPropertiesByUser',
+        //                 params: {
+        //                     userName: username
+        //                 }
+        //             }).then(
+        //                 function(response) {
+        //                     defer.resolve(response);
+        //                     // toastr.success("you got a user");
+        //                 }
+        //             },
+        //             function(error) {
+        //                 console.log(error);
+        //                 defer.reject(error);
+        //             });
+        //
+        //     return defer.promise;
+        // }
+
+        function getUser(username) {
+            var defer = $q.defer();
+
+            $http({
+                    method: 'GET',
+                    url: apiUrl + 'Properties/GetSearchPropertiesByUser',
+                    params: {
+                        userName: username
+                    }
+                })
+                .then(
+                    function(response) {
+                        defer.resolve(response);
+                    },
+                    function(error) {
+                        defer.reject(error);
+                    }
+                );
+
+            return defer.promise;
+        }
+
+
+
+
 
         function newUser(user) {
             var defer = $q.defer();

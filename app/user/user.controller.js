@@ -42,5 +42,31 @@
                     }
                 );
         }
+
+        vm.login = function() {
+            var inputUserName = vm.userName;
+            UserFactory.getUser(inputUserName).then(function(response) {
+                    vm.userResponse = response.data[0];
+                    localStorageService.set("localUserId", vm.userResponse.userId);
+                    localStorageService.set("localProperties", vm.userResponse.properties);
+                    localStorageService.set("localUserName", vm.userResponse.userName);
+                    if (vm.userResponse.isPropertyManager == false) {
+                        $state.go('search');
+                    } else {
+                        $state.go('property');
+                    }
+                    console.log(vm.userResponse);
+
+
+                },
+                function(error) {
+                    if (error.data) {
+                        toastr.error('There was a problem: ' + error.data);
+                    } else {
+                        toastr.info('no data found')
+                    }
+                }
+            )
+        }
     }
 })();
