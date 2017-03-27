@@ -10,20 +10,20 @@
     /* @ngInject */
     function UserController(UserFactory, toastr, localStorageService, $state) {
         var vm = this;
-
-        vm.getUsers = function() {
-            UserFactory.grabUsers()
-                .then(
-                    function(response) {
-                        vm.users = response.data;
-                        console.log(response.data);
-                    },
-                    function(error) {
-                        toastr.error(error);
-                    }
-                );
-        }
-        vm.getUsers();
+        //
+        // vm.getUsers = function() {
+        //     UserFactory.grabUsers()
+        //         .then(
+        //             function(response) {
+        //                 vm.users = response.data;
+        //                 console.log(response.data);
+        //             },
+        //             function(error) {
+        //                 toastr.error(error);
+        //             }
+        //         );
+        // }
+        // vm.getUsers();
 
         vm.addUser = function(user) {
             UserFactory.newUser(user)
@@ -38,7 +38,7 @@
                     },
                     function(error) {
                         toastr.error(error);
-                        $state.go('search');
+                        //$state.go('search');
                     }
                 );
         }
@@ -50,7 +50,10 @@
                     localStorageService.set("localUserId", vm.userResponse.userId);
                     localStorageService.set("localProperties", vm.userResponse.properties);
                     localStorageService.set("localUserName", vm.userResponse.userName);
-                    if (vm.userResponse.isPropertyManager == false) {
+                    console.log(vm.userResponse);
+                    console.log('USERNAME:', vm.userResponse.userName);
+                    if (vm.userResponse.isLandlord == false) {
+                        console.log(vm.userResponse);
                         $state.go('search');
                     } else {
                         $state.go('property');

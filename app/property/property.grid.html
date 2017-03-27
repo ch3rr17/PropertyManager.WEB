@@ -1,13 +1,14 @@
 <div class="container main-nav">
     <nav class="navbar navbar-light bg-faded pull-right">
         <form class="form-inline">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="">Search</button>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="">Logout</button>
+            <button class="btn btn-primary" type="submit" ui-sref="search">Search</button>
+            <button class="btn btn-primary" type="submit" ng-click="">Logout</button>
         </form>
     </nav>
 </div>
 <div class="container">
-    <form class="formContainer">
+    <button class="btn btn-primary" ng-click="showForm=!showForm">Add new property?</button>
+    <form class="formContainer" ng-show="showForm">
         <fieldset class="form-group">
             <label for="propertyname">Property Name</label>
             <input type="text" class="form-control input-sm" ng-model="vm.properties.propertyName">

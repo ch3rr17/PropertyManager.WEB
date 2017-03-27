@@ -24,10 +24,10 @@
                 controller: 'SearchController as vm'
             })
 
-            $stateProvider.state('searchdetails', {
-                url: '/searchdetails',
+            $stateProvider.state('searchDetails', {
+                url: '/searchdetails/:search',
                 templateUrl: 'app/search/search.grid.html',
-                controller: 'SearchDetailController as vm'
+                controller: 'SearchController as vm'
             })
 
             $stateProvider.state('property', {

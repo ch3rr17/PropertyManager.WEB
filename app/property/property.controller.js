@@ -11,14 +11,15 @@
     function PropertyController(PropertyFactory, toastr, localStorageService) {
         var vm = this;
 
-
+        vm.showForm = false;
 
         //get properties for landlord
         vm.getProperties = function() {
-            var user = localStorageService.get('localUserId');
-            console.log(localStorageService);
-
-            PropertyFactory.grabProperties()
+            //console.log(username);
+            //console.log(localStorageService);
+            var user = localStorageService.get('localUserName');
+            console.log(user);
+            PropertyFactory.grabProperties(user)
                 .then(
                     function(response) {
                         vm.properties = response.data;
@@ -32,13 +33,9 @@
 
         vm.getProperties();
 
+
         //add a new property
         vm.newProperty = function() {
-            // var user = LocalStorageFactory.getKey('savedUser');
-            // console.log(user);
-            // var user = localStorageService.get('localUserId');
-            // console.log(user);
-
             var newProp = {
                 userId: localStorageService.get('localUserId'),
                 propertyName: vm.properties.propertyName,
@@ -61,9 +58,6 @@
             PropertyFactory.addProperty(newProp)
                 .then(
                     function(response) {
-                        //console.log('new property', vm.newProperty);
-                        //vm.property.push(response.data);
-                        //vm.newProp = response.data;
                         console.log(response.data);
                     },
                     function(error) {

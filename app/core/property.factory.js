@@ -11,16 +11,18 @@
     function PropertyFactory($http, $q, toastr, apiUrl) {
         var service = {
             grabProperties: grabProperties,
-            addProperty: addProperty
+            addProperty: addProperty,
+            getProperties: getProperties,
+            newInterest: newInterest
         };
 
         return service;
 
-        function grabProperties() {
+        function grabProperties(username) {
             var defer = $q.defer();
             $http({
                     method: 'GET',
-                    url: apiUrl + 'properties'
+                    url: apiUrl + 'properties' + '/GetSearchPropertiesByUser?username=' + username
                 })
                 .then(
                     function(response) {
@@ -37,6 +39,39 @@
 
         }
 
+        function getProperties(search) {
+            console.log(search);
+            var defer = $q.defer();
+            $http({
+                    method: 'GET',
+                    url: apiUrl + 'Properties/SearchProperties',
+                    params: {
+                        city: search.city,
+                        zipCode: search.zipCode,
+                        minimumRent: search.minimumRent,
+                        maximumRent: search.maximumRent,
+                        bedroom: search.bedroom,
+                        bathroom: search.bathroom,
+                        isPetFriendly: search.isPetFriendly
+                    }
+                })
+                .then(
+                    function(response) {
+                        defer.resolve(response);
+                        console.log('SEARCHED PROPERTIES', response);
+                        toastr.success("Search match!");
+
+                    },
+                    function(error) {
+                        defer.reject(error);
+                        toastr.error(error);
+                    }
+                );
+
+            return defer.promise;
+        }
+
+        //add a new property
         function addProperty(newProp) {
             var defer = $q.defer();
             $http({
@@ -57,6 +92,26 @@
 
             return defer.promise;
 
+        }
+
+        function newInterest(propertyId) {
+            var defer = $q.defer();
+            $http({
+                    method: 'POST',
+                    url: apiUrl + 'Properties/' + propertyId + '/Users/' + userId
+                })
+                .then(
+                    function(response) {
+                        defer.resolve(response);
+                        toastr.success("You have added a new interest");
+                    },
+                    function(error) {
+                        defer.reject(error);
+                        toastr.error("Failed to add an intrest to a property");
+                    }
+                );
+
+            return defer.promise;
         }
     }
 })();

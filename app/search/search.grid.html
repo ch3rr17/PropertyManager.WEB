@@ -1,8 +1,8 @@
 <div class="container main-nav">
     <nav class="navbar navbar-light bg-faded pull-right">
         <form class="form-inline">
-            <input class="form-control mr-sm-2" type="text" placeholder="username" ng-model="">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="">Search</button>
+            <!-- <input class="form-control mr-sm-2" type="text" placeholder="username" ng-model=""> -->
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ui-sref="search">Search</button>
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="">Logout</button>
         </form>
     </nav>
@@ -13,6 +13,7 @@
             <h3 class="panel-title">Properties</h3>
         </div>
         <div class="panel-body">
+            <pre>{{vm.searchResults | json}}</pre>
             <div class="row">
                 <div class="col-md-4">
                     <img src="http://placehold.it/300x150">
@@ -22,7 +23,7 @@
                     <p>Rent: </p>
                     <p># of Bedrooms: </p>
                     <p>#of Bathrooms: </p>
-                    <p>Square Footage</p>
+                    <p>Square Footage: </p>
                     <button class="btn btn-primary">More details</button>
                     <!-- add show/hide functionality to property.detail.html -->
                 </div>

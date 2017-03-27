@@ -1,45 +1,69 @@
-<div class="container main-nav">
-    <nav class="navbar navbar-light bg-faded pull-right">
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="text" placeholder="username" ng-model="vm.userName">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="vm.login()">Login</button>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="">Register</button>
-        </form>
-    </nav>
-</div>
-<div class="container" style="margin-top: 50px;">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Register</h3>
+<nav class="navbar navbar-dark bg-primary navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <img class="nav-logo" width="50px" height="50px" src="app/images/home.png" alt="">
         </div>
-        <div class="panel-body">
-            <fieldset class="form-group">
-                <label for="firstname">FirstName</label>
-                <input type="text" class="form-control input-sm" ng-model="vm.user.firstName">
-            </fieldset>
-            <fieldset class="form-group">
-                <label for="lastname">LastName</label>
-                <input type="text" class="form-control input-sm" ng-model="vm.user.lastName">
-            </fieldset>
-            <fieldset class="form-group">
-                <label for="email">EmailAddress</label>
-                <input type="text" class="form-control input-sm" ng-model="vm.user.emailAddress">
-            </fieldset>
-            <fieldset class="form-group">
-                <label for="usercheck">Are you a Landlord?</label>
-                <!-- <input places-auto-complete class="form-control input-sm " ng-model=" " /> -->
-                <input class="form-check-input" type="checkbox" value="" ng-model="vm.user.isLandlord"> Yes
-                <!-- <input class="form-check-input" type="checkbox" value=""> No -->
-            </fieldset>
-            <fieldset class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control input-sm" ng-model="vm.user.userName">
-            </fieldset>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- <ul class="nav navbar-nav">
+                  <li class="active"><a ui-sref="posts">Posts <span class="sr-only">(current)</span></a></li>
+                  <li><a href="">Profile</a></li>
+              </ul> -->
+            <form class="navbar-form navbar-left pull-right">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="username" ng-model="vm.userName">
+                </div>
+                <button class="btn btn-default" type="submit" ng-click="vm.login()">Login</button>
+                <button class="btn btn-default" type="submit" ng-click="">Register</button>
+            </form>
+            <!-- <a class="btn btn btn-default navbar-btn pull-right" ng-click="vm.login()">Login</a>
+              <a class="btn btn btn-default navbar-btn">Register</a> -->
         </div>
-        <button type="submit" class="btn btn-primary btn-sm pull-right" ng-click="vm.addUser(vm.user)">Register</button>
+        <!-- /.navbar-collapse -->
     </div>
-
-
-
-
+    <!-- /.container-fluid -->
+</nav>
+<div class="container" style="margin-top: 60px;">
+    <div class="row text-center">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Register
+                </div>
+                <div class="panel-body">
+                    <fieldset class="form-group">
+                        <label for="firstname">FirstName</label>
+                        <input type="text" class="form-control input-sm" ng-model="vm.user.firstName">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="lastname">LastName</label>
+                        <input type="text" class="form-control input-sm" ng-model="vm.user.lastName">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="email">EmailAddress</label>,
+                        <input type="text" class="form-control input-sm" ng-model="vm.user.emailAddress">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="usercheck">Are you a Landlord?</label>
+                        <!-- <input places-auto-complete class="form-control input-sm " ng-model=" " /> -->
+                        <input class="form-check-input" type="checkbox" value="" ng-model="vm.user.isLandlord"> Yes
+                        <!-- <input class="form-check-input" type="checkbox" value=""> No -->
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control input-sm" ng-model="vm.user.userName">
+                    </fieldset>
+                </div>
+                <div class="panel-footer">
+                    <!-- <button type="submit" class="btn btn-primary btn-sm pull-right" ng-click="vm.addUser(vm.user)">Register</button> -->
+                    <button class="btn btn-primary btn-sm" ng-click="vm.addUser(vm.user)">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
 </div>
