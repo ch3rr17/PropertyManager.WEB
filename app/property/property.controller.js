@@ -67,12 +67,27 @@
         }
 
         //update a property
-        vm.editProperty = function(property) {
-            PropertyFactory.updateProperty(property)
+        vm.editProperty = function(properties) {
+            var id = properties.propertyId;
+            console.log(properties);
+            PropertyFactory.updateProperty(id, properties)
                 .then(
                     function(response) {},
                     function(error) {
                         tostr.error(error);
+                    }
+                );
+        }
+
+        //delete a property
+        vm.removeProperty = function(id, index) {
+            PropertyFactory.deleteProperty(id)
+                .then(
+                    function(response) {
+                        vm.properties.splice(index, 1);
+                    },
+                    function(error) {
+                        toastr.error('failure to delete property', error);
                     }
                 );
         }

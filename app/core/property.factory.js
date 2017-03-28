@@ -14,6 +14,7 @@
             addProperty: addProperty,
             getProperties: getProperties,
             updateProperty: updateProperty,
+            deleteProperty: deleteProperty,
             newInterest: newInterest
         };
 
@@ -120,12 +121,17 @@
         }
 
         //update a property
-        function updateProperty(property) {
+        function updateProperty(id, properties) {
+            console.log('updateProperty', id, properties);
             var defer = $q.defer();
             $http({
                     method: 'PUT',
-                    url: apiUrl + property.propertyId,
-                    data: property
+                    url: apiUrl + 'properties/' + id,
+                    data: properties
+
+                    // data: property
+                    //data: propertyId,
+                    //property
                 })
                 .then(
                     function(response) {
@@ -134,6 +140,28 @@
                     },
                     function(error) {
                         toastr.error(error);
+                    }
+                );
+
+            return defer.promise;
+        }
+
+        //Delete property
+        function deleteProperty(id) {
+            var defer = $q.defer();
+            $http({
+                    method: 'DELETE',
+                    url: apiUrl + 'properties/' + id
+                })
+                .then(
+                    function(response) {
+                        defer.resolve(response);
+                        console.log('you deleted a property', response);
+                        toastr.success('DELETED PROPERTY');
+                    },
+                    function(error) {
+                        toastr.error(error);
+                        toastr.error('FAILURE TO DELETE PROPERTY!');
                     }
                 );
 
