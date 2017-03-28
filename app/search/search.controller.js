@@ -12,10 +12,8 @@
         var vm = this;
         vm.searchResults = [];
 
-
+        //Search properties
         vm.searchHandler = function() {
-            // var searchString = "city=" + vm.city + "&zipCode=" + vm.zipCode + "&minRent=" + vm.minimumRent + "&maxRent=" + vm.maximumRent + "&bedroom=" + vm.bedroom + "&bathroom=" + vm.bathrooms;
-            // console.log(searchString);
             var user = localStorageService.get('localUserName');
             console.log('logged in', user);
             PropertyFactory.getProperties(vm.search)
@@ -35,17 +33,20 @@
                     },
                     function(error) {
                         toastr.error(error);
-
                     }
                 );
         }
 
+        //add an interest to a property
         vm.addInterest = function(propertyId) {
-            console.log(propertyId);
-            PropertyFactory.newInterest(searchResults.propertyId)
+            //console.log(propertyId);
+            var interest = {
+                "UserId": localStorageService.get('localUserId'),
+                "PropertyId": propertyId
+            };
+            PropertyFactory.newInterest(interest)
                 .then(
                     function(response) {
-                        //vm.interest.push(response.data);
                         console.log(response.data);
                     },
                     function(error) {

@@ -65,6 +65,17 @@
                     }
                 );
         }
+
+        //update a property
+        vm.editProperty = function(property) {
+            PropertyFactory.updateProperty(property)
+                .then(
+                    function(response) {},
+                    function(error) {
+                        tostr.error(error);
+                    }
+                );
+        }
     }
 
 })();

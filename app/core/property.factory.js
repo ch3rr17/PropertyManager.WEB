@@ -13,11 +13,13 @@
             grabProperties: grabProperties,
             addProperty: addProperty,
             getProperties: getProperties,
+            updateProperty: updateProperty,
             newInterest: newInterest
         };
 
         return service;
 
+        //Grabs landlord's properties
         function grabProperties(username) {
             var defer = $q.defer();
             $http({
@@ -39,6 +41,7 @@
 
         }
 
+        //Search properties, passing custom params
         function getProperties(search) {
             console.log(search);
             var defer = $q.defer();
@@ -94,11 +97,13 @@
 
         }
 
-        function newInterest(propertyId) {
+        //add an interest to a property
+        function newInterest(interest) {
             var defer = $q.defer();
             $http({
                     method: 'POST',
-                    url: apiUrl + 'Properties/' + propertyId + '/Users/' + userId
+                    url: apiUrl + 'interests',
+                    data: interest
                 })
                 .then(
                     function(response) {
@@ -108,6 +113,27 @@
                     function(error) {
                         defer.reject(error);
                         toastr.error("Failed to add an intrest to a property");
+                    }
+                );
+
+            return defer.promise;
+        }
+
+        //update a property
+        function updateProperty(property) {
+            var defer = $q.defer();
+            $http({
+                    method: 'PUT',
+                    url: apiUrl + property.propertyId,
+                    data: property
+                })
+                .then(
+                    function(response) {
+                        defer.resolve(response);
+                        toastr.success("You have update a property");
+                    },
+                    function(error) {
+                        toastr.error(error);
                     }
                 );
 
