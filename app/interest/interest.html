@@ -12,9 +12,11 @@
             <h3 class="panel-title">Interests List</h3>
         </div>
         <div class="panel-body">
-            <div class="row">
-                <div class="col-md-2">Property Name</div>
-                <div class="col-md-4"><button class="btn btn-danger">DELETE INTEREST</button></div>
+            <div class="row" ng-repeat="item in vm.interestResult">
+                <div class="col-md-4"><strong>Property Name:</strong> {{item.propertyName}}</div>
+                <div class="col-md-4" style="padding:10px;">
+                  <button class="btn btn-danger" ng-click="vm.removeInterest(item.propertyId)">DELETE INTEREST</button>
+                </div>
             </div>
         </div>
     </div>
