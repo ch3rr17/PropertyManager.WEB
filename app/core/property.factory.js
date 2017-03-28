@@ -121,21 +121,18 @@
         }
 
         //update a property
-        function updateProperty(id, properties) {
-            console.log('updateProperty', id, properties);
+        function updateProperty(properties) {
+            console.log('updateProperty', properties);
             var defer = $q.defer();
             $http({
                     method: 'PUT',
-                    url: apiUrl + 'properties/' + id,
+                    url: apiUrl + 'properties/' + properties.propertyId,
                     data: properties
-
-                    // data: property
-                    //data: propertyId,
-                    //property
                 })
                 .then(
                     function(response) {
-                        defer.resolve(response);
+                        defer.resolve(response.config.data);
+                        console.log(response.config.data);
                         toastr.success("You have update a property");
                     },
                     function(error) {

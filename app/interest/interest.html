@@ -1,7 +1,7 @@
 <div class="container main-nav">
     <nav class="navbar navbar-light bg-faded pull-right">
         <form class="form-inline">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="">Search</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ui-sref="search">Search</button>
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="">Logout</button>
         </form>
     </nav>
@@ -15,7 +15,7 @@
             <div class="row" ng-repeat="item in vm.interestResult">
                 <div class="col-md-4"><strong>Property Name:</strong> {{item.propertyName}}</div>
                 <div class="col-md-4" style="padding:10px;">
-                  <button class="btn btn-danger" ng-click="vm.removeInterest(item.propertyId)">DELETE INTEREST</button>
+                    <button class="btn btn-danger" ng-click="vm.removeInterest(item.propertyId)">DELETE INTEREST</button>
                 </div>
             </div>
         </div>

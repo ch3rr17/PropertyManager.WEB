@@ -12,6 +12,12 @@ body{
   /*width: 800px !important;*/
 }
 
+.property-container {
+  background-color: #111106;
+  color: #fff;
+  padding: 20px;
+}
+
 .panel{
     background-color: #111106;
     /*opacity: 0.8;*/
@@ -26,6 +32,7 @@ body{
 }
 
 .panel-footer {
+    height: 50px;
     background-color: #111106;
     /*opacity: 0.8;*/
     color: #fff;

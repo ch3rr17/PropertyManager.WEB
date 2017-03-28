@@ -6,7 +6,7 @@
         </form>
     </nav>
 </div>
-<div class="container">
+<div class="container property-container">
     <button class="btn btn-primary" ng-click="showForm=!showForm">Add new property?</button>
     <form class="formContainer" ng-show="showForm">
         <fieldset class="form-group">
@@ -136,7 +136,7 @@
             <div>
                 <!-- editable sq ft (select-remote) -->
                 <span class="title">Square Footage: </span>
-                <span editable-text="properties.squareFootage" e-name="group" onshow="loadGroups()">
+                <span editable-number="properties.squareFootage" e-name="group" onshow="loadGroups()">
             {{ properties.squareFootage }}
           </span>
             </div>
@@ -191,7 +191,7 @@
                 </button>
                 <!-- buttons to submit / cancel form -->
                 <span ng-show="editableForm.$visible">
-                    <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting" ng-click="vm.editProperty(properties)">
+                    <button type="submit" class="btn btn-primary"  ng-click="vm.editProperty(properties)">
                       Save
                     </button>
                     <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">

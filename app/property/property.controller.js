@@ -68,11 +68,33 @@
 
         //update a property
         vm.editProperty = function(properties) {
-            var id = properties.propertyId;
+            //var id = properties.propertyId;
             console.log(properties);
-            PropertyFactory.updateProperty(id, properties)
+            PropertyFactory.updateProperty(properties)
                 .then(
-                    function(response) {},
+                    function(response) {
+                        //properties.push(response.config.data);
+                        //console.log('properties update controller', response.squareFootage);
+                        vm.properties.forEach(function(element) {
+                            if (response.propertyId == element.propertyId) {
+                                console.log('PROP ELEMENT', element);
+                                element.propertyName = response.propertyName;
+                                element.address1 = response.address1;
+                                element.address2 = response.address2;
+                                element.city = response.city;
+                                element.state = response.state;
+                                element.zipCode = response.zipCode;
+                                element.contactPhone = response.contactPhone;
+                                element.rent = response.rent;
+                                element.squareFootage = parseInt(response.squareFootage);
+                                element.isPetFriendly = response.isPetFriendly;
+                                element.leaseTerm = response.leaseTerm;
+                                element.bedroom = response.bedroom;
+                                element.bathroom = response.bathroom;
+                                element.propertyImage = response.propertyImage;
+                            }
+                        });
+                    },
                     function(error) {
                         toastr.error(error);
                     }
