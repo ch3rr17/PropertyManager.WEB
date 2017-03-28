@@ -1,7 +1,34 @@
+body{
+  background-image: url("../images/bg-image.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+   background-size: cover;
+}
 .main-nav{
   margin-top: 50px;
 }
 
 .container .search-container{
   /*width: 800px !important;*/
+}
+
+.panel{
+    background-color: #111106;
+    /*opacity: 0.8;*/
+    color: #fff;
+    border-color: transparent;
+}
+
+.panel>.panel-heading {
+    background-color: #000;
+    border-bottom: 1px solid #903030;
+
+}
+
+.panel-footer {
+    background-color: #111106;
+    /*opacity: 0.8;*/
+    color: #fff;
+    border-top: 1px solid #903030;
+
 }

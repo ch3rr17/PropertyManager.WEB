@@ -10,21 +10,10 @@
     /* @ngInject */
     function UserController(UserFactory, toastr, localStorageService, $state) {
         var vm = this;
-        //
-        // vm.getUsers = function() {
-        //     UserFactory.grabUsers()
-        //         .then(
-        //             function(response) {
-        //                 vm.users = response.data;
-        //                 console.log(response.data);
-        //             },
-        //             function(error) {
-        //                 toastr.error(error);
-        //             }
-        //         );
-        // }
-        // vm.getUsers();
 
+        //adds or registers a new user
+        //if they register as a landlord, it should route to the properties propertyImage
+        //if they register as a tenant, it should route them to the search page
         vm.addUser = function(user) {
             UserFactory.newUser(user)
                 .then(
@@ -38,11 +27,13 @@
                     },
                     function(error) {
                         toastr.error(error);
-                        //$state.go('search');
                     }
                 );
         }
 
+        //login as a user
+        //if they login as a landlord, it should route them to the property page
+        //if they login as a tenant, it should route them to the search page to search properties
         vm.login = function() {
             var inputUserName = vm.userName;
             UserFactory.getUser(inputUserName).then(function(response) {
@@ -58,13 +49,10 @@
                     } else {
                         $state.go('property');
                     }
-                    console.log(vm.userResponse);
-
-
                 },
                 function(error) {
                     if (error.data) {
-                        toastr.error('There was a problem: ' + error.data);
+                        toastr.error('Please login with your username: ' + error);
                     } else {
                         toastr.info('no data found')
                     }

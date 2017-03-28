@@ -12,6 +12,9 @@
         var vm = this;
         vm.searchResults = [];
 
+        //vm.showSearchForm = false;
+        //vm.loadResults = true;
+
         //Search properties
         vm.searchHandler = function() {
             var user = localStorageService.get('localUserName');
@@ -27,6 +30,9 @@
                         // }, {
                         //     reload: true
                         // });
+
+                        //hide search form after search populates
+                        //vm.loadResults = false;
 
                         //clears input
                         vm.search = {};
