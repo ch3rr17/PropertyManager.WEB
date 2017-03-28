@@ -161,7 +161,7 @@
                     },
                     function(error) {
                         toastr.error(error);
-                        toastr.error('FAILURE TO DELETE PROPERTY!');
+                        toastr.error('FAILURE TO DELETE PROPERTY!!');
                     }
                 );
 

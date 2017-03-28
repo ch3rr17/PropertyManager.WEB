@@ -74,7 +74,7 @@
                 .then(
                     function(response) {},
                     function(error) {
-                        tostr.error(error);
+                        toastr.error(error);
                     }
                 );
         }
