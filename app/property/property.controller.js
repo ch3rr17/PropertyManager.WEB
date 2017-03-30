@@ -5,10 +5,10 @@
         .module('app')
         .controller('PropertyController', PropertyController);
 
-    PropertyController.$inject = ['PropertyFactory', 'toastr', 'localStorageService'];
+    PropertyController.$inject = ['PropertyFactory', 'toastr', 'localStorageService', 'LocalStorageFactory', '$state'];
 
     /* @ngInject */
-    function PropertyController(PropertyFactory, toastr, localStorageService) {
+    function PropertyController(PropertyFactory, toastr, localStorageService, LocalStorageFactory, $state) {
         var vm = this;
 
         vm.showForm = false;
@@ -22,8 +22,16 @@
             PropertyFactory.grabProperties(user)
                 .then(
                     function(response) {
-                        vm.properties = response.data;
-                        console.log(response.data);
+                        console.log(user);
+                        if (user = null) {
+                            toastr.warning("Please log in!");
+                            $state.go('register');
+
+                        } else {
+                            vm.properties = response.data;
+                            console.log(response.data);
+                        }
+                        vm.showForm = false;
                     },
                     function(error) {
                         toastr.error(error);
@@ -32,6 +40,8 @@
         }
 
         vm.getProperties();
+
+
 
 
         //add a new property
@@ -68,32 +78,33 @@
 
         //update a property
         vm.editProperty = function(properties) {
-            //var id = properties.propertyId;
-            console.log(properties);
+            // var id = properties.propertyId;
+            // console.log(id);
             PropertyFactory.updateProperty(properties)
                 .then(
                     function(response) {
-                        //properties.push(response.config.data);
+                        //vm.properties.push(response);
+                        console.log('UPDATED PROPERTIES', response);
                         //console.log('properties update controller', response.squareFootage);
-                        vm.properties.forEach(function(element) {
-                            if (response.propertyId == element.propertyId) {
-                                console.log('PROP ELEMENT', element);
-                                element.propertyName = response.propertyName;
-                                element.address1 = response.address1;
-                                element.address2 = response.address2;
-                                element.city = response.city;
-                                element.state = response.state;
-                                element.zipCode = response.zipCode;
-                                element.contactPhone = response.contactPhone;
-                                element.rent = response.rent;
-                                element.squareFootage = parseInt(response.squareFootage);
-                                element.isPetFriendly = response.isPetFriendly;
-                                element.leaseTerm = response.leaseTerm;
-                                element.bedroom = response.bedroom;
-                                element.bathroom = response.bathroom;
-                                element.propertyImage = response.propertyImage;
-                            }
-                        });
+                        // vm.properties.forEach(function(element) {
+                        //     if (response.propertyId == element.propertyId) {
+                        //         console.log('PROP ELEMENT', element);
+                        //         element.propertyName = response.propertyName;
+                        //         element.address1 = response.address1;
+                        //         element.address2 = response.address2;
+                        //         element.city = response.city;
+                        //         element.state = response.state;
+                        //         element.zipCode = response.zipCode;
+                        //         element.contactPhone = response.contactPhone;
+                        //         element.rent = response.rent;
+                        //         element.squareFootage = parseInt(response.squareFootage);
+                        //         element.isPetFriendly = response.isPetFriendly;
+                        //         element.leaseTerm = response.leaseTerm;
+                        //         element.bedroom = response.bedroom;
+                        //         element.bathroom = response.bathroom;
+                        //         element.propertyImage = response.propertyImage;
+                        //     }
+                        // });
                     },
                     function(error) {
                         toastr.error(error);
@@ -112,6 +123,14 @@
                         toastr.error('failure to delete property', error);
                     }
                 );
+        }
+
+
+        //logOut user
+        vm.logOut = function() {
+            $state.go('search');
+            LocalStorageFactory.clear();
+            toastr.success("You have logged out of your properties");
         }
     }
 

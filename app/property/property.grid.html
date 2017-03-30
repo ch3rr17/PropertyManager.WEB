@@ -1,204 +1,228 @@
-<div class="container main-nav">
-    <nav class="navbar navbar-light bg-faded pull-right">
-        <form class="form-inline">
-            <button class="btn btn-primary" type="submit" ui-sref="search">Search</button>
-            <button class="btn btn-primary" type="submit" ng-click="">Logout</button>
-        </form>
-    </nav>
-</div>
+<nav class="navbar navbar-dark bg-primary navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <img class="nav-logo" width="50px" height="50px" src="app/images/home.png" alt="">
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <!-- <li class="btn btn-default"><a ui-sref="interests">Interests</a></li>
+                <li><a href="">Profile</a></li> -->
+            </ul>
+            <form class="navbar-form navbar-left pull-right">
+                <button class="btn btn-default" type="submit" ui-sref="search">Search</button>
+                <button class="btn btn-default" type="submit" ng-click="vm.logOut()">Logout</button>
+            </form>
+            <!-- <a class="btn btn btn-default navbar-btn pull-right" ng-click="vm.login()">Login</a>
+              <a class="btn btn btn-default navbar-btn">Register</a> -->
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
 <div class="container property-container">
-    <button class="btn btn-primary" ng-click="showForm=!showForm">Add new property?</button>
-    <form class="formContainer" ng-show="showForm">
-        <fieldset class="form-group">
-            <label for="propertyname">Property Name</label>
-            <input type="text" class="form-control input-sm" ng-model="vm.properties.propertyName">
-        </fieldset>
-        <fieldset class="form-group">
-            <label for="address1">Address1</label>
-            <input type="text" class="form-control input-sm" ng-model="vm.properties.address1">
-        </fieldset>
-        <fieldset class="form-group">
-            <label for="address2">Address2</label>
-            <input type="text" class="form-control input-sm" ng-model="vm.properties.address2">
-        </fieldset>
-        <fieldset class="form-group">
-            <label for="city">City</label>
-            <input type="text" class="form-control input-sm" ng-model="vm.properties.city">
-        </fieldset>
-        <fieldset class="form-group">
-            <label for="state">State</label>
-            <input type="text" class="form-control input-sm" ng-model="vm.properties.state">
-        </fieldset>
-        <fieldset class="form-group">
-            <label for="zip">Zip</label>
-            <input type="text" class="form-control input-sm" ng-model="vm.properties.zip">
-        </fieldset>
-        <fieldset class="form-group">
-            <label for="contactPhone">Contact Phone</label>
-            <input type="text" class="form-control input-sm" ng-model="vm.properties.contactPhone">
-        </fieldset>
-        <fieldset class="form-group">
-            <label for="rent">Rent</label>
-            <input type="text" class="form-control input-sm" ng-model="vm.properties.rent">
-        </fieldset>
-        <fieldset class="form-group">
-            <label for="squareFootage">Square Footage</label>
-            <input type="text" class="form-control input-sm" ng-model="vm.properties.squareFootage">
-        </fieldset>
-        <fieldset class="form-group">
-            <label for="bedroom">Bedroom</label>
-            <input type="text" class="form-control input-sm" ng-model="vm.properties.bedroom">
-        </fieldset>
-        <fieldset class="form-group">
-            <label for="bathroom">Bathroom</label>
-            <input type="text" class="form-control input-sm" ng-model="vm.properties.bathroom">
-        </fieldset>
-        <fieldset class="form-group">
-            <label for="isPetFriendly">Pet Friendly?</label>
-            <input class="form-check-input" type="checkbox" value="" ng-model="vm.user.isPetFriendly"> Yes
-        </fieldset>
-        <fieldset class="form-group">
-            <label for="leaseTerm">Lease Term</label>
-            <input type="text" class="form-control input-sm" ng-model="vm.properties.leaseTerm">
-        </fieldset>
-        <fieldset class="form-group">
-            <label for="propertyImage">Property Image</label>
-            <input type="text" class="form-control input-sm" ng-model="vm.properties.propertyImage">
-        </fieldset>
+    <!-- <button class="btn btn-primary" ng-click="showForm=!showForm">Add new property?</button> -->
+    <div class="row">
+        <div class="col-md-4" style="margin-left: 30px;">
+            <h1 class="propHeading">My Properties</h1>
+            <div class="row" ng-repeat="properties in vm.properties">
+                <form editable-form name="editableForm" onaftersave="">
+                    <div>
+                        <!-- editable propertyname (text with validation) -->
+                        <span class="title">Property Name: </span>
+                        <span editable-text="properties.propertyName" e-name="propertyName" onbeforesave="checkName($data)">{{ properties.propertyName || 'empty' }}</span>
+                    </div>
 
-        <button type="submit" class="btn btn-primary" ng-click="vm.newProperty()">Add new property</button>
+                    <div>
+                        <!-- editable address1 (select-local) -->
+                        <span class="title">Address 1: </span>
+                        <span editable-text="properties.address1" e-name="status">
+                          {{ properties.address1 || 'empty' }}
+                        </span>
+                    </div>
 
-    </form>
-    <div class="row" ng-repeat="properties in vm.properties">
-        <form editable-form name="editableForm" onaftersave="">
-            <div>
-                <!-- editable propertyname (text with validation) -->
-                <span class="title">Property Name: </span>
-                <span editable-text="properties.propertyName" e-name="name" onbeforesave="checkName($data)">{{ properties.propertyName || 'empty' }}</span>
+                    <div>
+                        <!-- editable address2 (select-remote) -->
+                        <span class="title">Address 2: </span>
+                        <span editable-text="properties.address2" e-name="group">
+                        {{ properties.address2 }}
+                      </span>
+                    </div>
+
+                    <div>
+                        <!-- editable city (select-remote) -->
+                        <span class="title">City: </span>
+                        <span editable-text="properties.city" e-name="group" onshow="loadGroups()">
+                          {{ properties.city }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <!-- editable state (select-remote) -->
+                        <span class="title">State: </span>
+                        <span editable-text="properties.state" e-name="group" onshow="loadGroups()">
+                          {{ properties.state }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <!-- editable zip (select-remote) -->
+                        <span class="title">Zip: </span>
+                        <span editable-text="properties.zipCode" e-name="group" onshow="loadGroups()">
+                        {{properties.zipCode }}
+                      </span>
+                    </div>
+
+                    <div>
+                        <!-- editable contact (select-remote) -->
+                        <span class="title">Contact Phone: </span>
+                        <span editable-text="properties.phone" e-name="group" onshow="loadGroups()">
+                        {{ properties.phone}}
+                      </span>
+                    </div>
+
+                    <div>
+                        <!-- editable mo. rent (select-remote) -->
+                        <span class="title">Monthly Rent: </span>
+                        <span editable-text="properties.rent" e-name="group" onshow="loadGroups()">
+                          {{ properties.rent }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <!-- editable sq ft (select-remote) -->
+                        <span class="title">Square Footage: </span>
+                        <span editable-number="properties.squareFootage">
+                            {{ properties.squareFootage }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <!-- editable bedrooms (select-remote) -->
+                        <span class="title">Bedrooms: </span>
+                        <span editable-number="properties.bedroom" e-name="group" onshow="loadGroups()">
+                          {{ properties.bedroom }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <!-- editable bathrooms (select-remote) -->
+                        <span class="title">Bathrooms: </span>
+                        <span editable-number="properties.bathroom" e-name="group" onshow="loadGroups()">
+                          {{ properties.bathroom }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <!-- editable pet friendly (select-remote) -->
+                        <span class="title">Pet Friendly: </span>
+                        <span editable-checkbox="properties.isPetFriendly" e-name="group" onshow="loadGroups()">
+                        {{ properties.isPetFriendly }}
+                      </span>
+                    </div>
+
+                    <div>
+                        <!-- editable leaseterm (select-remote) -->
+                        <span class="title">Lease Term: </span>
+                        <span editable-text="properties.leaseTerm" e-name="group" onshow="loadGroups()">
+                          {{ properties.leaseTerm }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <!-- editable property image (select-remote) -->
+                        <span class="title">Property Image: </span>
+                        <span editable-text="properties.propertyImage" e-name="group" onshow="loadGroups()">
+                        {{ properties.propertyImage }}
+                      </span>
+                    </div>
+
+                    <div class="buttons">
+                        <!-- button to show form -->
+                        <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+                          Edit
+                        </button>
+                        <button type="button" class="btn btn-danger" ng-click="vm.removeProperty(properties.propertyId,$index)">
+                          Delete Property
+                        </button>
+                        <!-- buttons to submit / cancel form -->
+                        <span ng-show="editableForm.$visible">
+                          <button type="submit" class="btn btn-primary"  ng-click="vm.editProperty(properties)">
+                            Save
+                          </button>
+                          <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+                            Cancel
+                          </button>
+                      </span>
+                    </div>
+                </form>
             </div>
 
-            <div>
-                <!-- editable address1 (select-local) -->
-                <span class="title">Address 1: </span>
-                <span editable-text="properties.address1" e-name="status">
-            {{ properties.address1 || 'empty' }}
-          </span>
-            </div>
+        </div>
+        <div class="col-md-4">
+            <h1 class="propHeading" style="font-size: 16pt;">ADD A NEW PROPERTY</h1>
+            <form class="formContainer" ng-hide="showForm">
+                <fieldset class="form-group">
+                    <label for="propertyname">Property Name</label>
+                    <input type="text" class="form-control input-sm" ng-model="vm.properties.propertyName">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="address1">Address1</label>
+                    <input type="text" class="form-control input-sm" ng-model="vm.properties.address1">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="address2">Address2</label>
+                    <input type="text" class="form-control input-sm" ng-model="vm.properties.address2">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control input-sm" ng-model="vm.properties.city">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="state">State</label>
+                    <input type="text" class="form-control input-sm" ng-model="vm.properties.state">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="zip">Zip</label>
+                    <input type="text" class="form-control input-sm" ng-model="vm.properties.zip">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="contactPhone">Contact Phone</label>
+                    <input type="text" class="form-control input-sm" ng-model="vm.properties.contactPhone">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="rent">Rent</label>
+                    <input type="text" class="form-control input-sm" ng-model="vm.properties.rent">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="squareFootage">Square Footage</label>
+                    <input type="text" class="form-control input-sm" ng-model="vm.properties.squareFootage">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="bedroom">Bedroom</label>
+                    <input type="text" class="form-control input-sm" ng-model="vm.properties.bedroom">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="bathroom">Bathroom</label>
+                    <input type="text" class="form-control input-sm" ng-model="vm.properties.bathroom">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="isPetFriendly">Pet Friendly?</label>
+                    <input class="form-check-input" type="checkbox" value="" ng-model="vm.user.isPetFriendly"> Yes
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="leaseTerm">Lease Term</label>
+                    <input type="text" class="form-control input-sm" ng-model="vm.properties.leaseTerm">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="propertyImage">Property Image</label>
+                    <input type="text" class="form-control input-sm" ng-model="vm.properties.propertyImage">
+                </fieldset>
 
-            <div>
-                <!-- editable address2 (select-remote) -->
-                <span class="title">Address 2: </span>
-                <span editable-text="properties.address2" e-name="group">
-            {{ properties.address2 }}
-          </span>
-            </div>
+                <button type="submit" class="btn btn-primary" ng-click="vm.newProperty()">Add new property</button>
 
-            <div>
-                <!-- editable city (select-remote) -->
-                <span class="title">City: </span>
-                <span editable-text="properties.city" e-name="group" onshow="loadGroups()">
-            {{ properties.city }}
-          </span>
-            </div>
-
-            <div>
-                <!-- editable state (select-remote) -->
-                <span class="title">State: </span>
-                <span editable-text="properties.state" e-name="group" onshow="loadGroups()">
-            {{ properties.state }}
-          </span>
-            </div>
-
-            <div>
-                <!-- editable zip (select-remote) -->
-                <span class="title">Zip: </span>
-                <span editable-text="properties.zipCode" e-name="group" onshow="loadGroups()">
-            {{properties.zipCode }}
-          </span>
-            </div>
-
-            <div>
-                <!-- editable contact (select-remote) -->
-                <span class="title">Contact Phone: </span>
-                <span editable-text="properties.phone" e-name="group" onshow="loadGroups()">
-            {{ properties.phone}}
-          </span>
-            </div>
-
-            <div>
-                <!-- editable mo. rent (select-remote) -->
-                <span class="title">Monthly Rent: </span>
-                <span editable-text="properties.rent" e-name="group" onshow="loadGroups()">
-            {{ properties.rent }}
-          </span>
-            </div>
-
-            <div>
-                <!-- editable sq ft (select-remote) -->
-                <span class="title">Square Footage: </span>
-                <span editable-number="properties.squareFootage" e-name="group" onshow="loadGroups()">
-            {{ properties.squareFootage }}
-          </span>
-            </div>
-
-            <div>
-                <!-- editable bedrooms (select-remote) -->
-                <span class="title">Bedrooms: </span>
-                <span editable-select="properties.bedroom" e-name="group" onshow="loadGroups()">
-            {{ properties.bedroom }}
-          </span>
-            </div>
-
-            <div>
-                <!-- editable bathrooms (select-remote) -->
-                <span class="title">Bathrooms: </span>
-                <span editable-select="properties.bathroom" e-name="group" onshow="loadGroups()">
-            {{ properties.bathroom }}
-          </span>
-            </div>
-
-            <div>
-                <!-- editable pet friendly (select-remote) -->
-                <span class="title">Pet Friendly: </span>
-                <span editable-checkbox="properties.isPetFriendly" e-name="group" onshow="loadGroups()">
-            {{ properties.isPetFriendly }}
-          </span>
-            </div>
-
-            <div>
-                <!-- editable leaseterm (select-remote) -->
-                <span class="title">Lease Term: </span>
-                <span editable-text="properties.leaseTerm" e-name="group" onshow="loadGroups()">
-            {{ properties.leaseTerm }}
-          </span>
-            </div>
-
-            <div>
-                <!-- editable property image (select-remote) -->
-                <span class="title">Property Image: </span>
-                <span editable-text="properties.propertyImage" e-name="group" onshow="loadGroups()">
-            {{ properties.propertyImage }}
-          </span>
-            </div>
-
-            <div class="buttons">
-                <!-- button to show form -->
-                <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
-                  Edit
-                </button>
-                <button type="button" class="btn btn-danger" ng-click="vm.removeProperty(properties.propertyId,$index)">
-                  Delete Property
-                </button>
-                <!-- buttons to submit / cancel form -->
-                <span ng-show="editableForm.$visible">
-                    <button type="submit" class="btn btn-primary"  ng-click="vm.editProperty(properties)">
-                      Save
-                    </button>
-                    <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
-                      Cancel
-                    </button>
-              </span>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>

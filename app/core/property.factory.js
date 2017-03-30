@@ -11,6 +11,7 @@
     function PropertyFactory($http, $q, toastr, apiUrl) {
         var service = {
             grabProperties: grabProperties,
+            getUser: getUser,
             addProperty: addProperty,
             getProperties: getProperties,
             updateProperty: updateProperty,
@@ -40,6 +41,29 @@
 
             return defer.promise;
 
+        }
+
+        //get props by landlord
+        function getUser(username) {
+            var defer = $q.defer();
+
+            $http({
+                    method: 'GET',
+                    url: apiUrl + 'Properties/GetSearchPropertiesByUser',
+                    params: {
+                        userName: username
+                    }
+                })
+                .then(
+                    function(response) {
+                        defer.resolve(response);
+                    },
+                    function(error) {
+                        defer.reject(error);
+                    }
+                );
+
+            return defer.promise;
         }
 
         //Search properties, passing custom params

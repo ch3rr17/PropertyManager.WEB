@@ -18,7 +18,7 @@
 
         //Get interest for user
         function getInterest(user) {
-          console.log(user);
+            console.log(user);
             var defer = $q.defer();
             $http({
                     method: 'GET',
@@ -52,7 +52,7 @@
                         toastr.success('DELETED INTEREST');
                     },
                     function(error) {
-                        $log.error(error);
+                        toastr.error(error);
                         toastr.error('FAILURE TO DELETE AN INTEREST!');
                     }
                 );

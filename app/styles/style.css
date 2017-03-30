@@ -12,10 +12,17 @@ body{
   /*width: 800px !important;*/
 }
 
+.propForm {
+  font-size: 18pt;
+  font-weight: bold;
+  border-bottom: : 1px solid #fff;
+}
+
 .property-container {
   background-color: #111106;
   color: #fff;
   padding: 20px;
+  margin-top: 80px;
 }
 
 .panel{

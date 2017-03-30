@@ -11,8 +11,8 @@
     function UserFactory($http, $q, toastr, apiUrl) {
         var service = {
             // grabUsers: grabUsers,
-            newUser: newUser,
-            getUser: getUser
+            newUser: newUser
+            // getUser: getUser
         };
 
         return service;
@@ -39,27 +39,27 @@
         // }
 
         //get properties by landlord filtering by username
-        function getUser(username) {
-            var defer = $q.defer();
-
-            $http({
-                    method: 'GET',
-                    url: apiUrl + 'Properties/GetSearchPropertiesByUser',
-                    params: {
-                        userName: username
-                    }
-                })
-                .then(
-                    function(response) {
-                        defer.resolve(response);
-                    },
-                    function(error) {
-                        defer.reject(error);
-                    }
-                );
-
-            return defer.promise;
-        }
+        // function getUser(username) {
+        //     var defer = $q.defer();
+        //
+        //     $http({
+        //             method: 'GET',
+        //             url: apiUrl + 'Properties/GetSearchPropertiesByUser',
+        //             params: {
+        //                 userName: username
+        //             }
+        //         })
+        //         .then(
+        //             function(response) {
+        //                 defer.resolve(response);
+        //             },
+        //             function(error) {
+        //                 defer.reject(error);
+        //             }
+        //         );
+        //
+        //     return defer.promise;
+        // }
 
 
         //register a new user

@@ -33,10 +33,9 @@
             var user = localStorageService.get('localUserId');
             InterestFactory.deleteInterest(propertyId, user)
                 .then(
-                    function(response) {
-                    },
+                    function(response) {},
                     function(error) {
-                      toastr.error('Failure to delete interest!', error);
+                        toastr.error('Failure to delete interest!', error);
                     }
                 );
         }
